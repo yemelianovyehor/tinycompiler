@@ -37,7 +37,7 @@ class TokenType(enum.Enum):
 
 class Token:
 
-    def __init__(self, text, kind):
+    def __init__(self, text, kind: TokenType):
         self.text = text
         self.kind = kind
 
@@ -89,7 +89,7 @@ class Lexer:
         else:
             return Token(self.curChar, type)
 
-    def getToken(self):
+    def getToken(self) -> Token:
         self.skipWhitespace()
         self.skipComment()
         token = None
@@ -157,4 +157,5 @@ class Lexer:
             self.abort("Unknown token: " + self.curChar)
 
         self.nextChar()
+        # pyrefly: ignore
         return token
